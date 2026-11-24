@@ -1,0 +1,82 @@
+:root {
+  /* Ghibli Color Palette */
+  --color-cream-base: #fdfbf7;
+  --color-cream-card: #f9f4ea;
+  --color-blush-light: #fff0f3;
+  --color-blush-mid: #fbc4d4;
+  --color-blush-deep: #e886a1;
+  --color-lavender-soft: #f4f0fa;
+  --color-lavender-mid: #dcd0f3;
+  --color-lavender-accent: #937abf;
+  --color-gold-light: #fff9e6;
+  --color-gold-sun: #fed166;
+  --color-gold-warm: #d99b26;
+
+  /* Typography Colors */
+  --text-primary: #2e2633;
+  --text-secondary: #5f5268;
+  --text-muted: #8c7f96;
+  --text-light: #faf8f5;
+
+  /* Fonts */
+  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-script: 'Alex Brush', cursive;
+
+  /* Shadow & Glows */
+  --shadow-soft: 0 10px 30px -10px rgba(95, 82, 104, 0.15);
+  --shadow-warm: 0 16px 40px -12px rgba(217, 155, 38, 0.2);
+  --shadow-card: 0 20px 48px -16px rgba(46, 38, 51, 0.12);
+  --glow-sunlight: 0 0 40px rgba(254, 209, 102, 0.35);
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: var(--color-cream-base);
+  color: var(--text-primary);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: var(--color-cream-base);
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  background-color: var(--color-cream-base);
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

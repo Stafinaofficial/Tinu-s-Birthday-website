@@ -1,0 +1,98 @@
+.petals-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 20;
+  overflow: hidden;
+}
+
+.petal-wrapper {
+  position: absolute;
+  top: -40px;
+  animation-name: fallPetal;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.petal {
+  display: block;
+  animation-name: swayAndTumble;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  will-change: transform;
+  filter: drop-shadow(0 2px 4px rgba(232, 134, 161, 0.25));
+}
+
+/* Organic Petal Type 0: Classic Sakura Petal */
+.petal-type-0 .petal {
+  border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 235, 240, 0.95) 0%,
+    rgba(251, 196, 212, 0.88) 45%,
+    rgba(232, 134, 161, 0.75) 100%
+  );
+}
+
+/* Organic Petal Type 1: Lavender-tinged Petal */
+.petal-type-1 .petal {
+  border-radius: 50% 50% 10% 50% / 50% 50% 10% 50%;
+  background: linear-gradient(
+    125deg,
+    rgba(255, 240, 245, 0.95) 0%,
+    rgba(240, 215, 235, 0.88) 50%,
+    rgba(200, 180, 235, 0.72) 100%
+  );
+}
+
+/* Organic Petal Type 2: Sunlit Gold & Blush Petal */
+.petal-type-2 .petal {
+  border-radius: 70% 15% 70% 20% / 60% 20% 60% 20%;
+  background: linear-gradient(
+    140deg,
+    rgba(255, 250, 235, 0.95) 0%,
+    rgba(255, 222, 230, 0.85) 55%,
+    rgba(254, 209, 102, 0.65) 100%
+  );
+}
+
+@keyframes fallPetal {
+  0% {
+    transform: translateY(-5vh) translateX(0);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.9;
+  }
+  88% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(105vh) translateX(40px);
+    opacity: 0;
+  }
+}
+
+@keyframes swayAndTumble {
+  0% {
+    transform: translateX(-18px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(0.9);
+  }
+  50% {
+    transform: translateX(24px) rotateX(70deg) rotateY(160deg) rotateZ(120deg) scale(1.05);
+  }
+  100% {
+    transform: translateX(-12px) rotateX(150deg) rotateY(320deg) rotateZ(240deg) scale(0.95);
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .petals-container {
+    display: none !important;
+  }
+}

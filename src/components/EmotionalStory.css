@@ -1,0 +1,656 @@
+.emotional-story-container {
+  position: relative;
+  width: 100%;
+  min-height: 85vh;
+  min-height: 85svh;
+  background: linear-gradient(
+    180deg,
+    var(--color-cream-base) 0%,
+    #fff5f7 25%,
+    #f8f2fd 55%,
+    #fff8eb 85%,
+    #fff0f3 100%
+  );
+  padding: 60px 24px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Ambient glow orbs */
+.story-ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+  opacity: 0.45;
+  z-index: 1;
+}
+
+.story-ambient-glow.glow-1 {
+  width: 500px;
+  height: 500px;
+  top: 10%;
+  left: -100px;
+  background: radial-gradient(circle, rgba(251, 196, 212, 0.7) 0%, transparent 70%);
+}
+
+.story-ambient-glow.glow-2 {
+  width: 550px;
+  height: 550px;
+  top: 45%;
+  right: -120px;
+  background: radial-gradient(circle, rgba(220, 208, 243, 0.75) 0%, transparent 70%);
+}
+
+.story-ambient-glow.glow-3 {
+  width: 500px;
+  height: 500px;
+  bottom: 8%;
+  left: 20%;
+  background: radial-gradient(circle, rgba(254, 209, 102, 0.6) 0%, transparent 70%);
+}
+
+/* Progressive Stage Viewport */
+.story-stage-viewport {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Progress Tracker */
+.story-progress-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.story-progress-label {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-lavender-accent);
+  font-weight: 600;
+}
+
+.story-progress-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.progress-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(220, 208, 243, 0.65);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.progress-dot:hover {
+  background: var(--color-blush-deep);
+  transform: scale(1.2);
+}
+
+.progress-dot.active {
+  width: 18px;
+  border-radius: 999px;
+  background: var(--color-blush-deep);
+  box-shadow: 0 0 10px rgba(232, 134, 161, 0.5);
+}
+
+.progress-dot.completed {
+  background: var(--color-lavender-accent);
+}
+
+/* Active Card Stage */
+.story-active-card-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 330px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.story-animated-content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Story Beat Base */
+.story-beat {
+  position: relative;
+  width: 100%;
+  max-width: 660px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.beat-visual-wrapper {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Typography styles */
+.beat-text-primary {
+  font-family: var(--font-serif);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.beat-greeting {
+  font-size: clamp(2.4rem, 6vw, 3.8rem);
+  font-weight: 600;
+  font-style: italic;
+  color: #2e2633;
+}
+
+.story-word {
+  display: inline-block;
+}
+
+.beat-text-medium {
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 3.4vw, 1.85rem);
+  line-height: 1.55;
+  color: #3b3040;
+  margin: 0;
+  max-width: 600px;
+}
+
+.beat-text-large {
+  font-family: var(--font-serif);
+  font-size: clamp(1.45rem, 3.8vw, 2.1rem);
+  line-height: 1.5;
+  color: #2b2130;
+  margin: 0;
+  max-width: 620px;
+}
+
+/* Specific Highlights */
+.highlight-keyword {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 700;
+  color: var(--color-lavender-accent);
+  padding: 0 4px;
+}
+
+.highlight-heart {
+  color: var(--color-blush-deep);
+  font-weight: 600;
+}
+
+.highlight-shake {
+  color: #c75c20;
+  font-weight: 700;
+}
+
+.highlight-gold {
+  color: #b87e14;
+  font-weight: 700;
+  text-shadow: 0 0 12px rgba(254, 209, 102, 0.4);
+}
+
+.highlight-young {
+  color: #0d9488;
+  font-weight: 700;
+}
+
+/* BEAT 1: Floating Letter */
+.floating-letter-card {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px;
+  background: #fffdf9;
+  border-radius: 18px;
+  border: 1.5px solid rgba(220, 208, 243, 0.85);
+  box-shadow: 0 12px 32px -8px rgba(95, 82, 104, 0.14);
+}
+
+.letter-wax-seal {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e886a1 0%, #cf4c75 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(207, 76, 117, 0.35);
+}
+
+.letter-hint {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-lavender-accent);
+  font-weight: 600;
+}
+
+/* BEAT 2: Flower Halo */
+.flower-halo {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff0f3 0%, #fce4ec 100%);
+  border: 1.5px solid rgba(251, 196, 212, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-blush-deep);
+  box-shadow: 0 0 24px rgba(251, 196, 212, 0.6);
+}
+
+/* BEAT 3: Sister Fights */
+.fights-icon-badge {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+  border: 1.5px solid rgba(255, 179, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e65100;
+  box-shadow: 0 8px 24px rgba(230, 81, 0, 0.18);
+}
+
+.clash-sparkle {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-size: 18px;
+}
+
+/* BEAT 4: Lazy Cloud */
+.sleepy-cloud {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(220, 208, 243, 0.75);
+  box-shadow: 0 6px 20px rgba(95, 82, 104, 0.1);
+  color: var(--color-lavender-accent);
+}
+
+.zzz-text {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-lavender-accent);
+  letter-spacing: 0.15em;
+}
+
+.giggle-text {
+  font-style: italic;
+  color: var(--color-blush-deep);
+  font-weight: 600;
+}
+
+/* BEAT 5: Warm Glowing Journey */
+.beat-warm-glow {
+  background: rgba(255, 253, 247, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(254, 209, 102, 0.65);
+  border-radius: 28px;
+  box-shadow:
+    0 16px 40px -10px rgba(217, 155, 38, 0.18),
+    0 0 35px rgba(254, 209, 102, 0.25);
+}
+
+.sunlight-heart-glow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-gold-warm);
+}
+
+.glow-heart {
+  color: var(--color-blush-deep);
+  fill: rgba(232, 134, 161, 0.25);
+}
+
+/* BEAT 6: Comic Speech Bubble */
+.comic-speech-bubble {
+  position: relative;
+  background: #ffffff;
+  border: 2px dashed rgba(232, 134, 161, 0.8);
+  border-radius: 26px;
+  padding: 28px 24px 24px;
+  box-shadow: 0 16px 36px -12px rgba(232, 134, 161, 0.2);
+  width: 100%;
+  max-width: 580px;
+  box-sizing: border-box;
+}
+
+.comic-bubble-tail {
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 14px solid #ffffff;
+  filter: drop-shadow(0 2px 2px rgba(232, 134, 161, 0.3));
+}
+
+.comic-bubble-text {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+  font-style: italic;
+  line-height: 1.5;
+  color: #4a3e4e;
+  margin: 0 0 12px;
+}
+
+.comic-punchline {
+  font-family: var(--font-sans);
+  font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+  font-weight: 700;
+  color: #db2777;
+  line-height: 1.45;
+  background: #fff0f5;
+  padding: 10px 16px;
+  border-radius: 14px;
+}
+
+/* BEAT 7: Cherish Sparkle */
+.cherish-sparkle {
+  color: var(--color-gold-sun);
+}
+
+/* BEAT 8: Barbie Crown */
+.barbie-crown-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #db2777;
+}
+
+.barbie-pink-shimmer {
+  background: linear-gradient(135deg, #ec4899 0%, #db2777 50%, #9333ea 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  text-shadow: 0 2px 14px rgba(236, 72, 153, 0.3);
+}
+
+/* BEAT 9: Milestone 21 */
+.milestone-badge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fff9e6 0%, #fee685 100%);
+  border: 2px solid var(--color-gold-warm);
+  box-shadow: 0 8px 24px rgba(217, 155, 38, 0.28);
+  margin-bottom: 14px;
+}
+
+.milestone-number {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #925400;
+}
+
+.milestone-label {
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #b87e14;
+  font-weight: 700;
+}
+
+/* BEAT 10: Old Joke */
+.old-joke-card {
+  background: #ffffff;
+  border: 2px solid rgba(220, 208, 243, 0.9);
+  border-radius: 22px;
+  padding: 24px 28px;
+  box-shadow: 0 14px 34px -8px rgba(147, 122, 191, 0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.old-joke-icon {
+  font-size: 2.2rem;
+}
+
+.old-joke-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 3.2vw, 1.85rem);
+  font-weight: 700;
+  color: #7e22ce;
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* BEAT 11: Younger Sis */
+.young-sis-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: #f0fdfa;
+  border: 1px solid #99f6e4;
+  color: #0d9488;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.beat-smug {
+  font-style: italic;
+}
+
+/* BEAT 12: Oldy Barbie */
+.oldy-barbie-box {
+  background: linear-gradient(135deg, #fff0f5 0%, #fdf2f8 100%);
+  border: 1.5px solid rgba(244, 114, 182, 0.5);
+  border-radius: 22px;
+  padding: 20px 28px;
+  box-shadow: 0 10px 28px rgba(244, 114, 182, 0.15);
+}
+
+.oldy-barbie-text {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 3.4vw, 1.9rem);
+  font-weight: 600;
+  color: #9d174d;
+  margin: 0;
+}
+
+.oldy-highlight {
+  color: #db2777;
+  text-decoration: underline wavy #f472b6;
+}
+
+/* BEAT 13: Cake Invitation */
+.beat-cake-invitation {
+  padding: 24px 20px;
+  gap: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cake-spark-icon-wrapper {
+  color: var(--color-blush-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cake-invitation-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 4.2vw, 2.4rem);
+  font-weight: 600;
+  font-style: italic;
+  color: #2e2633;
+  margin: 0;
+}
+
+.cut-cake-entry-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 34px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #e886a1 0%, #db2777 50%, #d97706 100%);
+  color: #ffffff;
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 10px 30px -4px rgba(219, 39, 119, 0.4);
+  transition: box-shadow 0.3s ease;
+}
+
+.cut-cake-entry-button:hover {
+  box-shadow: 0 14px 40px -4px rgba(219, 39, 119, 0.55);
+}
+
+/* Gentle Navigation Control Bar */
+.story-control-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(220, 208, 243, 0.8);
+  box-shadow: 0 4px 16px rgba(95, 82, 104, 0.08);
+  margin-top: 6px;
+}
+
+.story-nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  color: var(--color-lavender-accent);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.story-nav-btn:hover:not(:disabled) {
+  background: rgba(220, 208, 243, 0.4);
+  color: var(--color-blush-deep);
+}
+
+.story-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.story-play-pause-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(255, 240, 245, 0.8);
+  border: 1px solid rgba(251, 196, 212, 0.7);
+  color: var(--color-blush-deep);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.story-play-pause-btn:hover {
+  background: #ffffff;
+  border-color: var(--color-blush-deep);
+}
+
+/* Accessibility & Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .floating-letter-card,
+  .flower-halo,
+  .sleepy-cloud,
+  .barbie-crown-wrapper,
+  .cake-spark-icon-wrapper {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .emotional-story-container {
+    padding: 50px 16px 60px;
+    min-height: 80vh;
+  }
+
+  .story-active-card-wrapper {
+    min-height: 300px;
+  }
+
+  .comic-speech-bubble {
+    padding: 20px 16px;
+  }
+
+  .cut-cake-entry-button {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    width: 100%;
+    justify-content: center;
+  }
+}
